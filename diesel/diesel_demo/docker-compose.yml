@@ -1,0 +1,17 @@
+postgres-data:
+  image: busybox
+  volumes:
+      - /var/lib/postgresql/data
+  container_name: postgres-datastore
+
+postgresql:
+  image: postgres
+  environment:
+    POSTGRES_USER: hoge
+    POSTGRES_PASSWORD: password
+    POSTGRES_DB: test
+  ports:
+    - "5432:5432"
+  container_name: postgres-db
+  volumes_from:
+      - postgres-data
